@@ -1,17 +1,19 @@
-import express, { Request, Response } from "express";
+import express from "express";
+import usersRouter from "./users";
 
 const app = express();
 const PORT = 3000;
 
-// Middleware to parse JSON
 app.use(express.json());
 
-// Example route
-app.get("/", (req: Request, res: Response) => {
-    res.send("Hello from Express + TypeScript 🚀");
+// Root route
+app.get("/", (req, res) => {
+    res.send("Welcome to the API 🚀");
 });
 
-// Start server
+// Users routes
+app.use("/users", usersRouter);
+
 app.listen(PORT, () => {
-    console.log(`Server is running at http://localhost:${PORT}`);
+    console.log(`Server running at http://localhost:${PORT}`);
 });
